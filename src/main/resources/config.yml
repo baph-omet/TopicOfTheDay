@@ -1,0 +1,10 @@
+
+
+# The number of seconds to delay display of the daily topic
+displayDelay: 5
+
+# A list of topics to be chosen
+topics:
+    - "What is your favorite Video Game? Why is it your favorite and what do you like or dislike about it?"
+    - "How did you get into Minecraft? What initially attracted you to the game, and why are you still playing it?"
+    - "If you could be any animal, which would you be and why?"

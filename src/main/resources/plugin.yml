@@ -1,0 +1,45 @@
+name: TopicOfTheDay
+main: io.github.griffenx.TopicOfTheDay.TopicOfTheDay
+version: 1.0.0
+
+commands:
+    topic:
+        description: Base command. Type "/topic help" for full commands.
+        usage: /topic
+        permission: totd.topic
+    totd:
+        description: Base command. Type "/totd help" for full commands.
+        usage: /totd
+        permission: totd.topic
+        
+permissions:
+    totd.admin:
+        description: Gives access to all TotD commands
+        children:
+            totd.add: true
+            totd.remove: true
+            totd.reroll: true
+            totd.broadcast: true
+            totd.reload: true
+    totd.view:
+        description: Allows you to view Topics
+        default: true
+    totd.help:
+        description: Allows you to view plugin help
+        default: true
+    totd.add:
+        description: Allows you to add new Topics
+        default: op
+    totd.remove:
+        description: Allows you to remove old Topics
+        default: op
+    totd.reroll:
+        description: Allows you to set a different Topic
+        default: op
+    totd.broadcast:
+        description: Allows you to show the current Topic to all players
+        default: op
+    totd.reload:
+        description: Allows you to reload the plugin's config
+        default: op
+        
