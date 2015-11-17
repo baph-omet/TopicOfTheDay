@@ -37,7 +37,7 @@ public class TopicOfTheDay extends JavaPlugin implements Listener {
 	public void onLogin(PlayerLoginEvent event) {
 		@SuppressWarnings("unused")
 		BukkitTask task = new TopicTask(event.getPlayer(),dailyTopic).runTaskLater(plugin, 20 * getConfig().getInt("displayDelay"));
-		log.info("Scheduled display of TOTD for player " + event.getPlayer().);
+		log.info("Scheduled display of TOTD for player " + event.getPlayer().getName());
 	}
 	
 	public static Plugin getPlugin(){
