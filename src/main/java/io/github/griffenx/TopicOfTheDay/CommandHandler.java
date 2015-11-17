@@ -126,7 +126,7 @@ public class CommandHandler implements CommandExecutor {
 	
 	private String collapseArguments(String[] args) {
 		String newTopic = "";
-		for (int i = 1; i < args.length; i++) newTopic += args[i];
+		for (int i = 1; i < args.length; i++) newTopic += args[i] + (i == args.length - 1 ? "" : " ");
 		return newTopic;
 	}
 }
