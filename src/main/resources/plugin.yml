@@ -6,11 +6,9 @@ commands:
     topic:
         description: Base command. Type "/topic help" for full commands.
         usage: /topic
-        permission: totd.topic
     totd:
         description: Base command. Type "/totd help" for full commands.
         usage: /totd
-        permission: totd.topic
         
 permissions:
     totd.admin:

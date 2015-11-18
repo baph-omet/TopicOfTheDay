@@ -12,7 +12,7 @@ public class TopicTask extends BukkitRunnable {
 	}
 	
 	public void run() {
-		if (recipient.isOnline() && recipient.hasPermission("totd.show")) {
+		if (recipient.isOnline() && recipient.hasPermission("totd.view")) {
 			String[] messages = {
 					ChatColor.DARK_GREEN + "=============================",
 					ChatColor.GREEN + "Today's discussion topic is:",

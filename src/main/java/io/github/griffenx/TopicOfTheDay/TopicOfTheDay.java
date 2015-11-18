@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitTask;
 
 public class TopicOfTheDay extends JavaPlugin implements Listener {
 	private static final Logger log = Logger.getLogger("Minecraft");
@@ -20,6 +20,7 @@ public class TopicOfTheDay extends JavaPlugin implements Listener {
 		plugin = this;
 		this.getCommand("totd").setExecutor(new CommandHandler(this));
 		this.getCommand("topic").setExecutor(new CommandHandler(this));
+		getServer().getPluginManager().registerEvents(this, this);
 		this.saveDefaultConfig();
 		getConfig();
 		getDailyTopic();
@@ -33,11 +34,10 @@ public class TopicOfTheDay extends JavaPlugin implements Listener {
 		saveConfig();
 	}
 	
-	@EventHandler
+	@EventHandler(priority=EventPriority.NORMAL)
 	public void onLogin(PlayerLoginEvent event) {
-		@SuppressWarnings("unused")
-		BukkitTask task = new TopicTask(event.getPlayer(),dailyTopic).runTaskLater(plugin, 20 * getConfig().getInt("displayDelay"));
-		log.info("Scheduled display of TOTD for player " + event.getPlayer().getName());
+		new TopicTask(event.getPlayer(),dailyTopic).runTaskLater(plugin, getConfig().getLong("displayDelay"));
+		//log.info("Scheduled display of TOTD for player " + event.getPlayer().getName());
 	}
 	
 	public static Plugin getPlugin(){
