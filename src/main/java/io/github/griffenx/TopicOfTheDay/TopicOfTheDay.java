@@ -36,7 +36,7 @@ public class TopicOfTheDay extends JavaPlugin implements Listener {
 	
 	@EventHandler(priority=EventPriority.NORMAL)
 	public void onLogin(PlayerLoginEvent event) {
-		new TopicTask(event.getPlayer(),dailyTopic).runTaskLater(plugin, getConfig().getLong("displayDelay"));
+		new TopicTask(event.getPlayer(),dailyTopic).runTaskLater(plugin, 20 * getConfig().getLong("displayDelay"));
 		//log.info("Scheduled display of TOTD for player " + event.getPlayer().getName());
 	}
 	

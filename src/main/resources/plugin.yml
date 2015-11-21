@@ -19,6 +19,7 @@ permissions:
             totd.reroll: true
             totd.broadcast: true
             totd.reload: true
+            totd.save: true
     totd.view:
         description: Allows you to view Topics
         default: true
@@ -39,5 +40,8 @@ permissions:
         default: op
     totd.reload:
         description: Allows you to reload the plugin's config
+        default: op
+    totd.save:
+        description: Allows you to save the plugin's config
         default: op
         

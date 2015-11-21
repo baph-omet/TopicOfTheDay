@@ -93,31 +93,48 @@ public class CommandHandler implements CommandExecutor {
 				
 				case "b":
 				case "broadcast":
-					String[] messages = {
-							ChatColor.DARK_GREEN + "=============================",
-							ChatColor.GREEN + "Today's discussion topic is:",
-							ChatColor.GREEN + TopicOfTheDay.dailyTopic,
-							ChatColor.DARK_GREEN + "----------",
-							ChatColor.GREEN + "Discuss!",
-							ChatColor.DARK_GREEN + "============================="
-					};
-					
-					for (String s : messages) {
-						plugin.getServer().broadcast(s, "totd.view");
-					}
+					if (sender.hasPermission("totd.broadcast")) {
+						String[] messages = {
+								ChatColor.DARK_GREEN + "=============================",
+								ChatColor.GREEN + "Today's discussion topic is:",
+								ChatColor.GREEN + TopicOfTheDay.dailyTopic,
+								ChatColor.DARK_GREEN + "----------",
+								ChatColor.GREEN + "Discuss!",
+								ChatColor.DARK_GREEN + "============================="
+						};
+						
+						for (String s : messages) {
+							plugin.getServer().broadcast(s, "totd.view");
+						}
+					} else sender.sendMessage(ChatColor.RED + "You do not have permission to run that command.");
 					return true;
+					
 				
 				case "rl":
 				case "reload":
-					try {
-						plugin.saveConfig();
-						plugin.reloadConfig();
-						sender.sendMessage(ChatColor.GREEN + "Config reloaded!");
-					} catch (Exception e) {
-						sender.sendMessage(ChatColor.RED + "An exception was encountered while trying to reload the config. Check your console for details.");
-						plugin.getLogger().severe("An exception was encountered while trying to reload the config for TopicOfTheDay.");
-						plugin.getLogger().severe(e.toString());
-					}
+					if (sender.hasPermission("totd.reload")) {
+						try {
+							plugin.reloadConfig();
+							sender.sendMessage(ChatColor.GREEN + "Config reloaded!");
+						} catch (Exception e) {
+							sender.sendMessage(ChatColor.RED + "An exception was encountered while trying to reload the config. Check your console for details.");
+							plugin.getLogger().severe("An exception was encountered while trying to reload the config for TopicOfTheDay.");
+							plugin.getLogger().severe(e.toString());
+						}
+					} else sender.sendMessage(ChatColor.RED + "You do not have permission to run that command.");
+					return true;
+				
+				case "save":
+					if (sender.hasPermission("totd.save")) {
+						try {
+							plugin.saveConfig();
+							sender.sendMessage(ChatColor.GREEN + "Config saved!");
+						} catch (Exception e) {
+							sender.sendMessage(ChatColor.RED + "An exception was encountered while trying to save the config. Check your console for details.");
+							plugin.getLogger().severe("An exception was encountered while trying to save the config for TopicOfTheDay.");
+							plugin.getLogger().severe(e.toString());
+						}
+					} else sender.sendMessage(ChatColor.RED + "You do not have permission to run that command.");
 					return true;
 			}
 		}
